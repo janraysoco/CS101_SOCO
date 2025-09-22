@@ -59,6 +59,8 @@ length(num_sum)
 #integers from 1 to 1000
 int2 <- 1:1000
 int2
+only10 <- int2[1:10]
+max(only10)
 
 #total data points
 total_data_points <- length(numseq) + length(integers_sequence) + length(mean_of_num) + length(num_sum)
