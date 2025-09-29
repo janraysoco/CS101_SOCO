@@ -8,6 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+#1. Create a vector using : operator
 x <- -5:5
 x
 ```
@@ -19,10 +20,12 @@ x
 ```
 
 ```{r}
+#2.* Create a vector using seq() function
 seq(1, 3, by=0.2)
 ```
 
 ```{r}
+#3. A factory has a census of its workers. There are 50 workers in total. The following list shows their ages:
 ages <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27,
 22, 37, 34, 19, 20, 57, 49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35,
 24,33, 41, 53, 40, 18, 44, 38, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26,
@@ -38,7 +41,32 @@ print(ages[-1])
 
 
 ```{r}
+#*Create a vector x <- c("first"=3, "second"=0, "third"=9). Then named the vector, names(x).
 x <- c("first"=3, "second"=0, "third"=9)
-x
+
 x[c("first", "third")]
+
+#The Output shows only the first and third which the value is 3 and 9.
+```
+
+
+```{r}
+#5. Create a sequence x from -3:2.
+x <- -3:2
+x
+x[2] <- 0
+x
+#The output shows that the element [2] was replaced by 0.
+```
+
+```{r}
+month <- c("Jan", "Feb", "March" ,"April" , "May", "June")
+priceperliter <- c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00)
+liters <- c(25, 30, 40, 50, 10, 45)
+
+fuel <- data.frame(month, priceperliter, liters)
+fuel
+
+ave <- weighted.mean(liters, priceperliter)
+ave
 ```
