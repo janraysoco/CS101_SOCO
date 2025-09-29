@@ -196,6 +196,7 @@ class(x) <- "foo"
 class(x)
 #[1] "foo"
 
+
 names = readline(prompt="Input your name: ")
 ages = readline(prompt="Input your age: ")
 print(paste("My name is", names, "and I am", ages ,"years old."))
