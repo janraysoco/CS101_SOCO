@@ -41,11 +41,10 @@ print(ages[-1])
 
 
 ```{r}
-#*Create a vector x <- c("first"=3, "second"=0, "third"=9). Then named the vector, names(x).
+#4.Create a vector x <- c("first"=3, "second"=0, "third"=9). Then named the vector, names(x).
 x <- c("first"=3, "second"=0, "third"=9)
-
+x
 x[c("first", "third")]
-
 #The Output shows only the first and third which the value is 3 and 9.
 ```
 
@@ -60,11 +59,11 @@ x
 ```
 
 ```{r}
-month <- c("Jan", "Feb", "March" ,"April" , "May", "June")
-priceperliter <- c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00)
-liters <- c(25, 30, 40, 50, 10, 45)
+Month <- c("Jan", "Feb", "March" ,"April" , "May", "June")
+Priceperliter <- c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00)
+Liters <- c(25, 30, 40, 50, 10, 45)
 
-fuel <- data.frame(month, priceperliter, liters)
+fuel <- data.frame(Month, Priceperliter, Liters)
 fuel
 
 ave <- weighted.mean(liters, priceperliter)
