@@ -63,3 +63,68 @@ female_5plus
 
 
 ```
+
+```{r}
+#2. Write a R program to create an empty data frame. Using the following codes:
+
+df = data.frame(Ints=integer(),
+
+Doubles=double(), Characters=character(),
+Logicals=logical(),
+Factors=factor(),
+stringsAsFactors=FALSE)
+
+print("Structure of the empty dataframe:")
+print(str(df))
+
+#a. Describe the results.
+#The program creates an empty data frame with zero rows but five predefined 
+#columns, each assigned a specific data type. The str() output confirms the 
+#structure by showing the column names and their corresponding types even though 
+#no data is stored yet.
+```
+
+```{r}
+#3. Create a .csv file of this. Save it as HouseholdData.csv
+data <- data.frame(
+  Respondents = 1:10,
+  Sex = c("Male","Female","Female","Male","Male", "Female","Female","Male",
+          "Female","Male"),
+  Fathers.Occupation = c(1,2,3,3,1,2,2,3,1,3),
+  Persons.at.Home = c(1,2,3,3,1,2,2,3,1,3),
+  Siblings.at.School = c(5,7,3,8,6,4,4,2,11,6),
+  Types.of.Houses = c("Wood","Congrete","Congrete","Wood","Semi-congrete",
+  "Semi-congrete","Wood","Semi-congrete","Semi-congrete","Congrete"),
+  stringsAsFactors = FALSE
+)
+
+write.csv(data, "HouseholdData.csv", row.names = FALSE)
+
+#a
+
+data <- read.csv("HouseholdData.csv", stringsAsFactors = FALSE)
+data
+
+
+#b.
+
+data$Sex <- factor(data$Sex, levels = c("Male","Female"))
+as.integer(data$Sex)
+
+ #c
+data$Types.of.Houses <- factor(data$Types.of.Houses,
+                               levels = c("Wood","Congrete","Semi-congrete"))
+as.integer(data$Types.of.Houses)
+#d
+data$Fathers.Occupation <- factor(data$Fathers.Occupation,
+                                  levels = c(1,2,3),
+                                  labels = c("Farmer","Driver","Others"))
+as.integer(data$Fathers.Occupation)
+
+#e
+subset(data, Sex == "Female" & Fathers.Occupation == "Driver")
+#f
+
+subset(data, Siblings.at.School >= 5)
+
+```
