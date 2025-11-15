@@ -103,7 +103,6 @@ print(new_order_data)
 #5. Enter the data below in Excel with file name = import_march.csv
 
 import_march <- read.table("import_march.csv", header = TRUE, sep = ",")
-View(import_march)
 import_march
 
 ```
@@ -116,7 +115,10 @@ num <- as.integer(readline("Select a number from 1 to 50: "))
 
 cat("Chosen number:", num, "\n")
 
-if (num < 1 || num > 50) {
+if (is.na(num)) {
+  cat("Invalid input. Please enter a number.\n")
+  
+} else if (num < 1 || num > 50) {
   cat("The number selected is beyond the range of 1 to 50\n")
   
 } else if (num == 20) {
