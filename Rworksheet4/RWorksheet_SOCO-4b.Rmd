@@ -1,0 +1,254 @@
+---
+title: "RWorksheet_SOCO#4b"
+author: "JanRay P. Soco"
+date: "2025-11-24"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r}
+#1. Using the for loop, create an R script that will display a 5x5 matrix as shown in
+#Figure 1. It must contain vectorA = [1,2,3,4,5] and a 5 x 5 zero matrix.
+vectorr <- c(1, 2, 3, 4, 5)
+Matrix <- matrix(0, nrow = 5, ncol = 5)
+for (i in 1:5) {
+for (j in 1:5) {
+Matrix[i, j] <- abs(i - j) + 1
+}
+}
+Matrix
+
+
+```
+
+```{r}
+#2. Print the string "*" using for() function. The output should be the same as shown
+
+for (i in 1:5) {
+line <- ""      
+for (j in 1:i) {
+line <- paste(line, "*")
+}
+print(line)
+}
+
+```
+
+```{r}
+#3. Get an input from the user to print the Fibonacci sequence starting from the 1st input
+#up to 500. Use repeat and break statements. Write the R Scripts and its output.
+num1 <- readline("Enter The Fibonachii number: ")
+
+if (num1 == "") {
+  start1 <- 10 
+} else {
+  start1 <- as.numeric(num1)
+}
+
+if (is.na(start1)) {
+  stop("Invalid input. Please enter a numeric value.")
+}
+
+
+a <- 0
+b <- 1
+
+repeat {
+  fib <- a
+  
+  if (fib >= start1) {
+    print(fib)
+  }
+  
+  if (fib > 500) {
+    break
+  }
+  
+  temp <- a + b
+  a <- b
+  b <- temp
+}
+```
+
+```{r}
+#4. Import the dataset as shown in Figure 1 you have created previously.
+#if csv
+data_file <- read.csv("Householddata.csv")
+head(data_file)
+
+library(readxl)
+household_data <- read_excel("Householddata.xlsx")
+head(household_data)
+
+#b. 
+
+female_group <- subset(household_data, Sex == "F")
+male_group <- subset(household_data, Sex == "M")
+total_female <- nrow(female_group)
+total_male <- nrow(male_group)
+total_female
+total_male
+
+#c. 
+
+gender_counts <- c(total_male, total_female)
+barplot(
+  gender_counts,
+  names.arg = c("Male", "Female"),
+  main = "Number of Males and Females in Household Data",
+  xlab = "Gender",
+  ylab = "Count",
+  col = c("blue", "pink"),
+  legend.text = c("Male", "Female")
+)
+
+```
+
+
+```{r}
+#5. The monthly income of Dela Cruz family was spent on the following:
+#a. 
+
+expenses <- c(60, 10, 5, 25)
+categories <- c("Food", "Electricity", "Savings", "Miscellaneous")
+
+percent_labels <- paste0(categories, " (", expenses, "%)")
+
+pie(
+  expenses,
+  labels = percent_labels,
+  main = "Monthly Expenses of Dela Cruz Family",
+  col = rainbow(length(expenses))
+)
+```
+
+```{r}
+#6. Use the iris dataset.
+data(iris)
+str(iris)
+mean_values <- colMeans(iris[, 1:4])
+mean_values
+species_counts <- table(iris$Species)
+pie(
+  species_counts,
+  labels = names(species_counts),
+  main = "Distribution of Iris Species",
+  col = c("red", "green", "blue")
+)
+legend(
+  "topright",
+  legend = names(species_counts),
+  fill = c("red", "green", "blue")
+)
+
+
+setosa <- subset(iris, Species == "setosa")
+versicolor <- subset(iris, Species == "versicolor")
+virginica <- subset(iris, Species == "virginica")
+tail(setosa)
+tail(versicolor)
+tail(virginica)
+
+#e. Create a scatterplot of the sepal.length and sepal.width using the different
+#species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal
+#width and length, labels for the x and y axis, the pch symbol and colors should be based on
+#the species.
+
+iris$Species <- as.factor(iris$Species)
+colors <- c("red", "green", "blue")[iris$Species]
+plot(
+  iris$Sepal.Length,
+  iris$Sepal.Width,
+  col = colors,
+  pch = 19,
+  main = "Iris Dataset",
+  sub = "Sepal width and length",
+  xlab = "Sepal Length",
+  ylab = "Sepal Width"
+)
+
+legend(
+  "topright",
+  legend = levels(iris$Species),
+  col = c("red", "green", "blue"),
+  pch = 19
+)
+
+#interpretation 
+
+#Setosa, shown in red, forms a clear and compact group with the widest sepal widths and the shortest sepal lengths. Versicolor, in green, shows moderate values for both measurements and slightly overlaps with Virginica. Virginica, displayed in blue, generally has the longest sepal lengths, making Setosa easy to distinguish, while Versicolor and Virginica remain harder to separate.
+```
+
+```{r}
+#7. Import the alexa-file.xlsx. Check on the variations. Notice that there are extra whitespaces among black variants (Black Dot, Black Plus, Black Show, BlackSpot). Also on the white variants (White Dot, White Plus, White Show, White Spot).
+#a. Rename the white and black variants by using gsub() function.
+
+library(readxl)
+alexa <- read_excel("alexa_file.xlsx")
+View(alexa)
+alexa$variation <- gsub("Black Dot",  "Black_Dot",  alexa$variation)
+alexa$variation <- gsub("Black Plus", "Black_Plus", alexa$variation)
+alexa$variation <- gsub("Black Show", "Black_Show", alexa$variation)
+alexa$variation <- gsub("Black Spot", "Black_Spot", alexa$variation)
+
+alexa$variation <- gsub("White Dot",  "White_Dot",  alexa$variation)
+alexa$variation <- gsub("White Plus", "White_Plus", alexa$variation)
+alexa$variation <- gsub("White Show", "White_Show", alexa$variation)
+alexa$variation <- gsub("White Spot", "White_Spot", alexa$variation)
+
+head(alexa[, c("variation", "verified_reviews")])
+
+#b.
+library(dplyr)
+
+variation_counts <- alexa %>%
+  count(variation)
+
+variation_counts
+save(variation_counts, file = "variations.RData")
+
+
+#C. Barplot
+load("variations.RData")
+
+barplot(
+  variation_counts$n,
+  names.arg = variation_counts$variation,
+  col = rainbow(length(variation_counts$variation)),
+  main = "Total Count of Alexa Variations",
+  xlab = "Variation",
+  ylab = "Total Count",
+  las = 2,
+  cex.names = 0.8
+)
+
+#d. 
+black_variants <- subset(variation_counts, grepl("Black", variation))
+white_variants <- subset(variation_counts, grepl("White", variation))
+
+par(mfrow = c(1, 2))
+barplot(
+  black_variants$n,
+  names.arg = black_variants$variation,
+  col = c("black", "darkred", "darkgreen", "darkblue"),
+  main = "Black Variants",
+  xlab = "Variants",
+  ylab = "Total Numbers",
+  las = 2
+)
+barplot(
+  white_variants$n,
+  names.arg = white_variants$variation,
+  col = c("gray40", "pink", "lightblue", "lightgreen"),
+  main = "White Variants",
+  xlab = "Variants",
+  ylab = "Total Numbers",
+  las = 2
+)
+
+```
