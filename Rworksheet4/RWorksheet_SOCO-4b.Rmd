@@ -181,7 +181,11 @@ legend(
 
 #interpretation 
 
-#Setosa, shown in red, forms a clear and compact group with the widest sepal widths and the shortest sepal lengths. Versicolor, in green, shows moderate values for both measurements and slightly overlaps with Virginica. Virginica, displayed in blue, generally has the longest sepal lengths, making Setosa easy to distinguish, while Versicolor and Virginica remain harder to separate.
+#Setosa, shown in red, forms a clear and compact group with the widest sepal 
+#widths and the shortest sepal lengths. Versicolor, in green, shows moderate
+#values for both measurements and slightly overlaps with Virginica. Virginica, 
+#displayed in blue, generally has the longest sepal lengths, making Setosa easy 
+#to distinguish, while Versicolor and Virginica remain harder to separate.
 ```
 
 ```{r}
@@ -190,7 +194,7 @@ legend(
 
 library(readxl)
 alexa <- read_excel("alexa_file.xlsx")
-View(alexa)
+
 alexa$variation <- gsub("Black Dot",  "Black_Dot",  alexa$variation)
 alexa$variation <- gsub("Black Plus", "Black_Plus", alexa$variation)
 alexa$variation <- gsub("Black Show", "Black_Show", alexa$variation)
